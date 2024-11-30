@@ -73,7 +73,7 @@ app.get('/user/profile', async (req, res) => {
 
 // Route to refresh access token
 app.post('/refresh_token', async (req, res) => {
-    const refresh_token = /* retrieve your stored refresh_token here */;
+    const access_token = req.query.access_token;
     try {
         const response = await axios.post(
             TOKEN_URI,
