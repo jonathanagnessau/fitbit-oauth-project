@@ -57,7 +57,8 @@ app.get('/callback', async (req, res) => {
 
 // Route to fetch user's profile
 app.get('/user/profile', async (req, res) => {
-    const access_token = /* retrieve your stored access_token here */;
+    // Replace this with how you actually retrieve the access token
+    const access_token = req.query.access_token; // Or use your session/database method
     try {
         const response = await axios.get('https://api.fitbit.com/1/user/-/profile.json', {
             headers: {
@@ -70,6 +71,7 @@ app.get('/user/profile', async (req, res) => {
         res.status(500).send('Error fetching profile data');
     }
 });
+
 
 // Route to refresh access token
 app.post('/refresh_token', async (req, res) => {
