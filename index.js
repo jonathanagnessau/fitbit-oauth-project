@@ -10,7 +10,7 @@ app.use(cors());  // Allow cross-origin requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -53,7 +53,8 @@ app.get('/callback', async (req, res) => {
         );
 
         const { access_token, refresh_token } = response.data;
-        // Store the tokens securely in a session or database
+        // Store tokens securely in a session or database (instead of sending back directly)
+        // Example: res.cookie('access_token', access_token, { httpOnly: true });
         res.send({ access_token, refresh_token });
     } catch (error) {
         console.error('Error exchanging code for tokens:', error.response?.data || error.message);
